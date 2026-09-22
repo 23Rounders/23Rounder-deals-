@@ -147,7 +147,24 @@
                 <div class="form-group">
                     <label>Price</label>
                     <input type="text" id="productPrice" name="Product_Price" readonly style="background: #eee;">
-                </div>
+                </div><!-- Quantity Option -->
+<div class="form-group"> 
+    <label>Quantity</label>
+    <select name="Quantity" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+        <option value="1 Piece">1 Piece</option>
+        <option value="2 Pieces">2 Pieces</option>
+        <option value="3 Pieces">3 Pieces</option>
+        <option value="4 Pieces">4 Pieces</option>
+        <option value="5 Pieces">5 Pieces</option>
+    </select>
+</div> 
+
+<!-- Color & Size Option (By Default Hidden) -->
+<div class="form-group" id="colorGroup" style="display: none;">
+    <label>Color & Size</label>
+    <input type="text" name="Color_and_Size" placeholder="e.g. Red / M Size">
+</div>
+                
 
                 <div class="form-group">
                     <label>Full Name</label>
@@ -174,16 +191,28 @@
         </div>
     </div>
 
-    <script>
-        function openOrderModal(name, price) {
-            document.getElementById('productName').value = name;
-            document.getElementById('productPrice').value = price;
-            document.getElementById('orderModal').style.display = 'flex';
-        }
+    <script> function openOrderModal(productName, productPrice, showColor) {
+    document.getElementById('productName').value = productName;
+    document.getElementById('productPrice').value = productPrice;
+    
+    var colorBox = document.getElementById('colorGroup');
+    if (showColor === 'yes') {
+        colorBox.style.display = 'block';
+    } else {
+        colorBox.style.display = 'none';
+    }
+    
+    document.getElementById('orderModal').style.display = 'block';
+}
 
-        function closeOrderModal() {
-            document.getElementById('orderModal').style.display = 'none';
-        }
+function closeOrderModal() {
+    document.getElementById('orderModal').style.display = 'none';
+}
+        
+    
+
+        
+    
 
         // Close modal if clicked outside content
         window.onclick = function(event) {
